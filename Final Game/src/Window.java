@@ -27,6 +27,8 @@ public class Window extends JPanel implements ActionListener{
 	    w.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    w.setResizable(false);
 	    w.setVisible(true);
-	    //yeee yeee test
+	    
+	    Entity e = new Entity(1, 1, 1, "test.png");
+	    
 	}
 }
