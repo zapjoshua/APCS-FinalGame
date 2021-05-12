@@ -14,8 +14,34 @@ public class Entity
 	public Entity(int totH, int a, int d, Image i)
 	{
 		totalHealth = totH;
+		currentHealth = totH;
 		attack = a;
 		defense = d;
 		image = i;
+	}
+	
+	public int setCurrentHealth(int change)
+	{
+		return currentHealth += change;
+	}
+	
+	public int getAttack()
+	{
+		return attack;
+	}
+	
+	public int getDefense()
+	{
+		return defense;
+	}
+	
+	public int getCurrentHealth()
+	{
+		return currentHealth;
+	}
+	
+	public int getTotalHealth()
+	{
+		return totalHealth;
 	}
 }
