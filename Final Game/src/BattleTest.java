@@ -1,4 +1,7 @@
+import java.awt.Image;
 import java.util.Scanner;
+
+import javax.swing.ImageIcon;
 //currently text based too see if idea of system would even work
 public class BattleTest 
 {
@@ -10,9 +13,11 @@ public class BattleTest
 		boolean enemyLost = false;
 		boolean playerTurn = true;
 		boolean enemyTurn = false;
+		Image p = (new ImageIcon("rat.jpg")).getImage();
+		Image e = (new ImageIcon("test.jpg")).getImage();
 		String action = "";
-		Entity player = new Entity(10, 2, 1);
-		Entity enemy = new Entity(6, 1, 0);
+		Entity player = new Entity(10, 2, 1, p);
+		Entity enemy = new Entity(6, 1, 0, e);
 		
 		System.out.println("A wild Rat has appeared!");
 		
