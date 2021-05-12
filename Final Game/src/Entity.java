@@ -4,7 +4,8 @@ public class Entity
 {
 
 	//basic stats
-	private int health;
+	private int totalHealth;
+	private int currentHealth;
 	private int attack;
 	private int defense;
 	private Image image;
