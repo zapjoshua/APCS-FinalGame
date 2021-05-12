@@ -11,10 +11,9 @@ public class Entity
 	private Image image;
 	
 	//constructor for basic stats
-	public Entity(int totH, int currentH, int a, int d, Image i)
+	public Entity(int totH, int a, int d, Image i)
 	{
 		totalHealth = totH;
-		currentHealth = currentH;
 		attack = a;
 		defense = d;
 		image = i;
