@@ -22,7 +22,7 @@ public class Entity
 	
 	public int setCurrentHealth(int change)
 	{
-		return currentHealth += change;
+		return currentHealth -= change;
 	}
 	
 	public int getAttack()
