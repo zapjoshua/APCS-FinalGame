@@ -1,34 +1,25 @@
 import java.awt.Color;
+import java.awt.Image;
 import java.awt.Container;
 import java.awt.Graphics;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.*;
 import javax.swing.Timer;
+import java.awt.Dimension;
 
-public class Window extends JPanel implements ActionListener{
-	public Window() {
-	
-	}
-	
-	public void actionPerformed(ActionEvent e) {
-	    
-	    
-	}
-	
-	public static void main(String[] args) {
+public class Window {
+	public Window(Game g) {
 		JFrame w = new JFrame("The game"); 
-	    w.setSize(500, 500); //feel free to change anything btw
+	    w.setSize(new Dimension(1000, 500)); //feel free to change anything btw
 	    
-	    Container c = w.getContentPane();
-	    c.add(new Window()); 
-
-	    w.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	    w.add(g);
 	    w.setResizable(false);
+	    w.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	    w.setLocationRelativeTo(null);
 	    w.setVisible(true);
-	    
-	    Entity e = new Entity(1, 1, 1, "test.png");
-	    
 	}
 }
