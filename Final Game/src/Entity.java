@@ -22,6 +22,8 @@ public class Entity
 	
 	public int setCurrentHealth(int change)
 	{
+		if (change < 0)
+			return 0;
 		return currentHealth -= change;
 	}
 	
