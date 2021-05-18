@@ -11,6 +11,7 @@ public class BattleTest
 		Scanner kboard = new Scanner(System.in);
 		boolean playerLost = false;
 		boolean enemyLost = false;
+		boolean playerDefending = false;
 		Image p = (new ImageIcon("rat.jpg")).getImage();
 		Image e = (new ImageIcon("test.jpg")).getImage();
 		String action = "";
