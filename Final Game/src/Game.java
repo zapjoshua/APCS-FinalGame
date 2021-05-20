@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -5,8 +6,6 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import info.gridworld.actor.*;
-import info.gridworld.actor.Actor;
-import info.gridworld.actor.ActorWorld;
 import info.gridworld.grid.*;
 
 public class Game extends Actor
@@ -17,6 +16,9 @@ public class Game extends Actor
    
    public static void main(String[] args) 
    {
+	   int num = 0;
+	   Color[] colors = {Color.DARK_GRAY, Color.GRAY, Color.LIGHT_GRAY, Color.WHITE, Color.ORANGE};
+	   
 	   //Hiding unimportant things and changing name from GridWorld to Rat Game
        System.setProperty("info.gridworld.gui.selection", "hide");
        System.setProperty("info.gridworld.gui.tooltips", "hide");
@@ -27,10 +29,14 @@ public class Game extends Actor
        
        Grid<Actor> gr; //grid
 
-       //Adding Rat to the world
+       //Adding Player and other entities to the world
 	   Player r = new Player();
 	   world.add(new Location(10,10),r);
-	   world.add(new Location (5,5),new Rock());
+		for(int x = 0; x < 15; x++)
+		{
+			num = x % 5;
+			world.add(new Rock(colors[num]));
+		}
        world.show();
        
        //Keyboard inputs
