@@ -1,4 +1,3 @@
-import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -16,34 +15,18 @@ public class Game extends Actor
    
    public static void main(String[] args) 
    {
-	   //variables
-	   int num = 0;
-	   Color[] colors = {Color.DARK_GRAY, Color.GRAY, Color.LIGHT_GRAY, Color.WHITE};
-	   
-	   //Hiding unimportant things and changing name from GridWorld to The Game
+	   //Hiding unimportant things and changing name from GridWorld to Rat Game
        System.setProperty("info.gridworld.gui.selection", "hide");
        System.setProperty("info.gridworld.gui.tooltips", "hide");
        System.setProperty("info.gridworld.gui.frametitle", "The Game");
        
        //Test Popup for fighting sequence
        JFrame text = new JFrame();
-       
-       Grid<Actor> gr; //grid
 
-       //Adding Player and other entities to the world
+       //Adding Rat to the world
 	   Player r = new Player();
-	   AmongUs a = new AmongUs();
-	   Dog d = new Dog();
 	   world.add(new Location(10,10),r);
-	   world.add(new Location(15,15), a);
-	   world.add(new Location(5,5), d);
-		for(int x = 0; x < 15; x++)
-		{
-			num = x % 4;
-			world.add(new Rock(colors[num]));
-		}
-		
-		//show the world
+	   world.add(new Location (5,5),new Rock());
        world.show();
        
        //Keyboard inputs
@@ -54,19 +37,19 @@ public class Game extends Actor
     		   String key = javax.swing.KeyStroke.getKeyStrokeForEvent(event).toString();
     		   //up
     		   if (key.equals("pressed W"))
-    			   if(grid.isValid(r.getLocation().getAdjacentLocation(0)))
+    			   if(canMove(r.getLocation().getAdjacentLocation(0)))
     				   r.moveTo(r.getLocation().getAdjacentLocation(0));
     		   //down
     		   if (key.equals("pressed D"))
-    			   if(grid.isValid(r.getLocation().getAdjacentLocation(Location.EAST)))
+    			   if(canMove(r.getLocation().getAdjacentLocation(Location.EAST)))
     				   r.moveTo(r.getLocation().getAdjacentLocation(Location.EAST));
     		   //left
     		   if (key.equals("pressed S"))
-    			   if(grid.isValid(r.getLocation().getAdjacentLocation(Location.SOUTH)))
+    			   if(canMove(r.getLocation().getAdjacentLocation(Location.SOUTH)))
     			   r.moveTo(r.getLocation().getAdjacentLocation(Location.SOUTH));
     		   //right
     		   if (key.equals("pressed A"))
-    			   if(grid.isValid(r.getLocation().getAdjacentLocation(Location.WEST)))
+    			   if(canMove(r.getLocation().getAdjacentLocation(Location.WEST)))
     			   r.moveTo(r.getLocation().getAdjacentLocation(Location.WEST));
     		   //pick up
     		   if (key.equals("pressed E"))
@@ -83,4 +66,11 @@ public class Game extends Actor
        world.setMessage("Its Gaming Time");      
        world.show();
     }
+   public static boolean canMove(Location loc) { //function for checking if the next space is valid
+	   if(! grid.isValid(loc))
+		   return false;
+	   Actor thing = (Actor)grid.get(loc); //gets whatever actor is at the location
+	   
+	   return(!(thing instanceof Rock)); //make sure to add (thing instanceof <what ever new class youre adding>)
+   }
 }
