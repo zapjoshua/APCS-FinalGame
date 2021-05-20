@@ -11,7 +11,9 @@ import info.gridworld.grid.*;
 
 public class Game extends Actor
 {
-   public static ActorWorld world = new ActorWorld(new BoundedGrid<Actor>(20, 20));
+   public static BoundedGrid grid = new BoundedGrid<Actor>(20, 20);
+   public static ActorWorld world = new ActorWorld(grid);
+   
    
    public static void main(String[] args) 
    {
@@ -22,8 +24,10 @@ public class Game extends Actor
        
        //Test Popup for fighting sequence
        JFrame text = new JFrame();
+       
+       Grid<Actor> gr; //grid
 
-       //Adding Player to the world
+       //Adding Rat to the world
 	   Player r = new Player();
 	   world.add(new Location(10,10),r);
 	   world.add(new Location (5,5),new Rock());
@@ -37,15 +41,19 @@ public class Game extends Actor
     		   String key = javax.swing.KeyStroke.getKeyStrokeForEvent(event).toString();
     		   //up
     		   if (key.equals("pressed W"))
-    			   r.moveTo(r.getLocation().getAdjacentLocation(0));
+    			   if(grid.isValid(r.getLocation().getAdjacentLocation(0)))
+    				   r.moveTo(r.getLocation().getAdjacentLocation(0));
     		   //down
     		   if (key.equals("pressed D"))
-    			   r.moveTo(r.getLocation().getAdjacentLocation(Location.EAST));
+    			   if(grid.isValid(r.getLocation().getAdjacentLocation(Location.EAST)))
+    				   r.moveTo(r.getLocation().getAdjacentLocation(Location.EAST));
     		   //left
     		   if (key.equals("pressed S"))
+    			   if(grid.isValid(r.getLocation().getAdjacentLocation(Location.SOUTH)))
     			   r.moveTo(r.getLocation().getAdjacentLocation(Location.SOUTH));
     		   //right
     		   if (key.equals("pressed A"))
+    			   if(grid.isValid(r.getLocation().getAdjacentLocation(Location.WEST)))
     			   r.moveTo(r.getLocation().getAdjacentLocation(Location.WEST));
     		   //pick up
     		   if (key.equals("pressed E"))
