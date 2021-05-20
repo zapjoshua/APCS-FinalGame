@@ -1,4 +1,3 @@
-//import java.awt.Image;
 
 public class Entity 
 {
@@ -9,17 +8,17 @@ public class Entity
 	private int attack;
 	private int defense;
 	private String name;
-	//private Image image;
+	private String fileName;
 	
 	//constructor for basic stats
-	public Entity(int totH, int a, int d, String n)
+	public Entity(int totH, int a, int d, String n, String f)
 	{
 		totalHealth = totH;
 		currentHealth = totH;
 		attack = a;
 		defense = d;
 		name = n;
-		//image = i;
+		fileName = f;
 	}
 	
 	public int setCurrentHealth(int change)
@@ -54,5 +53,10 @@ public class Entity
 	public String getName()
 	{
 		return name;
+	}
+	
+	public String getFileName()//used for getting image during battle
+	{
+		return fileName;
 	}
 }
