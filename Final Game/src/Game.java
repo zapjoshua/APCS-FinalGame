@@ -17,7 +17,7 @@ public class Game extends Actor
    public static void main(String[] args) 
    {
 	   int num = 0;
-	   Color[] colors = {Color.DARK_GRAY, Color.GRAY, Color.LIGHT_GRAY, Color.WHITE, Color.ORANGE};
+	   Color[] colors = {Color.DARK_GRAY, Color.GRAY, Color.LIGHT_GRAY, Color.WHITE};
 	   
 	   //Hiding unimportant things and changing name from GridWorld to Rat Game
        System.setProperty("info.gridworld.gui.selection", "hide");
@@ -34,7 +34,7 @@ public class Game extends Actor
 	   world.add(new Location(10,10),r);
 		for(int x = 0; x < 15; x++)
 		{
-			num = x % 5;
+			num = x % 4;
 			world.add(new Rock(colors[num]));
 		}
        world.show();
