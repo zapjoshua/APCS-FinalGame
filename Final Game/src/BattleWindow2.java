@@ -47,7 +47,7 @@ public class BattleWindow2 extends JFrame implements ActionListener
 		panel.add(button);
 		panel.add(button2);
 		panel.add(playerImage);
-		panel.add(rat);
+		panel.add(enemyImage);
 		panel.add(ratHealth);
 		panel.add(playerHealth);
 		panel.setBackground(Color.LIGHT_GRAY);
