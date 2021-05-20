@@ -7,9 +7,9 @@ import info.gridworld.grid.Location;
 
 import java.awt.Color;
 
-public class Dog extends Actor
+public class AmongUs extends Actor
 {
-	public Dog()
+	public AmongUs()
 	{
 		setColor(null);
 	}
