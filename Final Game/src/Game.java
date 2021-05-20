@@ -81,8 +81,17 @@ public class Game extends Actor
    public static boolean canMove(Location loc) { //function for checking if the next space is valid
 	   if(! grid.isValid(loc))
 		   return false;
+	   checkCollision(loc);
 	   Actor thing = grid.get(loc); //gets whatever actor is at the location
 	   
 	   return(!(thing instanceof Rock || thing instanceof Dog || thing instanceof AmongUs || thing instanceof Rat)); //make sure to add (thing instanceof <what ever new class youre adding>)
+   }
+   public static void checkCollision(Location loc) { //checks for specific entities in the next space
+	   Actor thing = grid.get(loc);
+	   
+	   if(thing instanceof AmongUs) {
+		   //idk cayden puts however the battle system here
+		   System.out.print("when the imposter is sus");
+	   }
    }
 }

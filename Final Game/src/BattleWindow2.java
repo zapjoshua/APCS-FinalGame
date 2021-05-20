@@ -8,12 +8,14 @@ import java.awt.*;
 
 public class BattleWindow2 extends JFrame implements ActionListener
 {
-		
-	private static Entity player = new Entity(10, 2, 1, "Player", "./PlayerBattle.gif");
-	private static Entity enemy = new Entity(6, 2, 0, "Rat",  "./ratBattle.gif");
+	private static Entity player; //= new Entity(10, 2, 1, "Player", "./PlayerBattle.gif");
+	private static Entity enemy; //= new Entity(6, 2, 0, "Rat",  "./ratBattle.gif");
 	
-	public static void main (String[] args) throws IOException
+	public BattleWindow2(Entity p, Entity e) throws IOException
 	{
+		player = p;
+		enemy = e;
+		
 		JFrame frame = new JFrame("Battle!");
 		JPanel panel = new JPanel();
 		frame.getContentPane();
@@ -35,7 +37,7 @@ public class BattleWindow2 extends JFrame implements ActionListener
 		JLabel ratHealth = new JLabel(showHealth(enemy.getName(),enemy.getCurrentHealth(), enemy.getTotalHealth()));
 		JLabel playerHealth = new JLabel(showHealth(player.getName(),player.getCurrentHealth(), player.getTotalHealth()));
 		
-		//places iamges and labels in JPanel
+		//places images and labels in jPanel
 		playerImage.setBounds(80, 50, 100, 100);
 		enemyImage.setBounds(300, 50, 155, 100);
 		ratHealth.setBounds(330, 5, 100, 50);
@@ -53,9 +55,9 @@ public class BattleWindow2 extends JFrame implements ActionListener
 		panel.setBackground(Color.LIGHT_GRAY);
 
 		
-		//setups the frame
+		//setsup the frame
 		panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		frame.add(panel);
 		frame.setSize(500, 300);
 		frame.setResizable(false);
@@ -68,13 +70,32 @@ public class BattleWindow2 extends JFrame implements ActionListener
 				{
 					enemy.setCurrentHealth(player.getAttack());
 					ratHealth.setText(showHealth(enemy.getName(),enemy.getCurrentHealth(), enemy.getTotalHealth()));
-					player.setCurrentHealth(enemy.getAttack());
-					playerHealth.setText(showHealth(player.getName(),player.getCurrentHealth(), player.getTotalHealth()));
+					if (enemy.getCurrentHealth() > 0)
+					{
+						player.setCurrentHealth(enemy.getAttack());
+						playerHealth.setText(showHealth(player.getName(),player.getCurrentHealth(), player.getTotalHealth()));
+						if(player.getCurrentHealth() == 0)
+						{
+							JOptionPane.showMessageDialog(frame, "GAME OVER: You Lost!");
+							frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+						}
+					}
+					else
+					{
+						JOptionPane.showMessageDialog(frame, "You Won!");
+						frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+					}
 				}
 				else if (enemy.getCurrentHealth() <= 0)
+				{
 					JOptionPane.showMessageDialog(frame, "You Won!");
+					frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				}
 				else if (player.getCurrentHealth() <= 0)
-					JOptionPane.showMessageDialog(frame, "You Lost!");
+				{
+					JOptionPane.showMessageDialog(frame, "GAME OVER: You Lost!");
+					frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				}
 					
 				
 			}	
@@ -83,13 +104,26 @@ public class BattleWindow2 extends JFrame implements ActionListener
 		button2.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (player.getCurrentHealth() > 0)
+				if (player.getCurrentHealth() > 0 && enemy.getCurrentHealth() > 0)
 				{
 					player.setCurrentHealth(enemy.getAttack() - player.getDefense());
 					playerHealth.setText(showHealth(player.getName(),player.getCurrentHealth(), player.getTotalHealth()));
+					if (player.getCurrentHealth() == 0) //check if health reached 0 to display loss message
+					{
+						JOptionPane.showMessageDialog(frame, "GAME OVER: You Lost!");
+						frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+					}
+				}
+				else if (player.getCurrentHealth() == 0)
+				{
+					JOptionPane.showMessageDialog(frame, "GAME OVER: You Lost!");
+					frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				}
 				else
-					JOptionPane.showMessageDialog(frame, "You Lost!");
+				{
+					JOptionPane.showMessageDialog(frame, "You Won!");
+					frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				}
 			}
 			
 		});
