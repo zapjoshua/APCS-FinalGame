@@ -1,4 +1,5 @@
 import info.gridworld.actor.ActorWorld;
+import info.gridworld.actor.Rock;
 import info.gridworld.grid.BoundedGrid;
 import info.gridworld.grid.Location;
 
@@ -12,9 +13,11 @@ public class Game
 {
     public static void main(String[] args)
     {
+    	World2 w2 = new World2();
+    	
     	BoundedGrid grid = new BoundedGrid(20, 20);
-        ActorWorld world = new ActorWorld();
-        world.setGrid(grid);
-        world.show();
+        //ActorWorld world = new ActorWorld();
+        w2.setGrid(grid);
+        w2.show();
     }
 }
