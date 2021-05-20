@@ -13,7 +13,7 @@ public class Game extends Actor
 {
    public static BoundedGrid<Actor> grid = new BoundedGrid<Actor>(20, 20);
    public static ActorWorld world = new ActorWorld(grid);
-   
+   public static Entity playerEntity = new Entity(10, 2, 1, "Player", "./PlayerBattle.gif");
    
    public static void main(String[] args) 
    {
