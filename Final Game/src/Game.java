@@ -23,7 +23,7 @@ public class Game extends Actor
        //Test Popup for fighting sequence
        JFrame text = new JFrame();
 
-       //Adding Rat to the world
+       //Adding Player to the world
 	   Player r = new Player();
 	   world.add(new Location(10,10),r);
 	   world.add(new Location (5,5),new Rock());
