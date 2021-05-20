@@ -9,8 +9,8 @@ import java.awt.*;
 public class BattleWindow2 extends JFrame implements ActionListener
 {
 		
-	private static Entity player = new Entity(10, 2, 1, "Player");
-	private static Entity enemy = new Entity(6, 2, 0, "Rat");
+	private static Entity player = new Entity(10, 2, 1, "Player", "./PlayerBattle.gif");
+	private static Entity enemy = new Entity(6, 2, 0, "Rat",  "./ratBattle.gif");
 	
 	public static void main (String[] args) throws IOException
 	{
@@ -25,19 +25,24 @@ public class BattleWindow2 extends JFrame implements ActionListener
 		button.setBounds(125,200, 90, 20);
 		button2.setBounds(275,200, 90, 20);
 		
-		BufferedImage image = ImageIO.read(new File("./PlayerBattle.gif"));
-		BufferedImage image2 = ImageIO.read(new File("./ratBattle.gif"));
-		JLabel rat = new JLabel(new ImageIcon(image2));
+		//sets images for the battle
+		BufferedImage image = ImageIO.read(new File(player.getFileName()));
+		BufferedImage image2 = ImageIO.read(new File(enemy.getFileName()));
+		JLabel enemyImage = new JLabel(new ImageIcon(image2));
 		JLabel playerImage = new JLabel(new ImageIcon(image));
+		
+		//makes health "bars" for you and enemy
 		JLabel ratHealth = new JLabel(showHealth(enemy.getName(),enemy.getCurrentHealth(), enemy.getTotalHealth()));
 		JLabel playerHealth = new JLabel(showHealth(player.getName(),player.getCurrentHealth(), player.getTotalHealth()));
+		
+		//places iamges and labels in JPanel
 		playerImage.setBounds(80, 50, 100, 100);
-		rat.setBounds(300, 50, 155, 100);
+		enemyImage.setBounds(300, 50, 155, 100);
 		ratHealth.setBounds(330, 5, 100, 50);
 		playerHealth.setBounds(80, 5, 100, 50);
 		
 		
-		
+		//setups the panel
 		panel.setLayout(null);
 		panel.add(button);
 		panel.add(button2);
@@ -48,7 +53,7 @@ public class BattleWindow2 extends JFrame implements ActionListener
 		panel.setBackground(Color.LIGHT_GRAY);
 
 		
-		
+		//setups the frame
 		panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.add(panel);
