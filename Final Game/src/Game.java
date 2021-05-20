@@ -29,9 +29,11 @@ public class Game extends Actor
        Player r = new Player();
 	   AmongUs a = new AmongUs();
 	   Dog d = new Dog();
+	   Rat rat = new Rat();
 	   world.add(new Location(10,10),r);
 	   world.add(new Location(15,15), a);
 	   world.add(new Location(5,5), d);
+	   world.add(new Location(3,7), rat);
 		for(int x = 0; x < 15; x++)
 		{
 			num = x % 4;
