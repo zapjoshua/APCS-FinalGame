@@ -81,6 +81,6 @@ public class Game extends Actor
 		   return false;
 	   Actor thing = grid.get(loc); //gets whatever actor is at the location
 	   
-	   return(!(thing instanceof Rock)); //make sure to add (thing instanceof <what ever new class youre adding>)
+	   return(!(thing instanceof Rock || thing instanceof Dog || thing instanceof AmongUs)); //make sure to add (thing instanceof <what ever new class youre adding>)
    }
 }
