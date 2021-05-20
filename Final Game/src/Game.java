@@ -9,7 +9,7 @@ import info.gridworld.grid.*;
 
 public class Game extends Actor
 {
-   public static BoundedGrid grid = new BoundedGrid<Actor>(20, 20);
+   public static BoundedGrid<Actor> grid = new BoundedGrid<Actor>(16, 16);
    public static ActorWorld world = new ActorWorld(grid);
    
    
@@ -69,7 +69,7 @@ public class Game extends Actor
    public static boolean canMove(Location loc) { //function for checking if the next space is valid
 	   if(! grid.isValid(loc))
 		   return false;
-	   Actor thing = (Actor)grid.get(loc); //gets whatever actor is at the location
+	   Actor thing = grid.get(loc); //gets whatever actor is at the location
 	   
 	   return(!(thing instanceof Rock)); //make sure to add (thing instanceof <what ever new class youre adding>)
    }
