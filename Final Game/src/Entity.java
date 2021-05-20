@@ -1,4 +1,4 @@
-import java.awt.Image;
+//import java.awt.Image;
 
 public class Entity 
 {
@@ -8,22 +8,25 @@ public class Entity
 	private int currentHealth;
 	private int attack;
 	private int defense;
-	private Image image;
+	//private Image image;
 	
 	//constructor for basic stats
-	public Entity(int totH, int a, int d, Image i)
+	public Entity(int totH, int a, int d, String n)
 	{
 		totalHealth = totH;
 		currentHealth = totH;
 		attack = a;
 		defense = d;
-		image = i;
+		name = n;
+		//image = i;
 	}
 	
 	public int setCurrentHealth(int change)
 	{
 		if (change < 0)
 			return 0;
+		else if (change > currentHealth)
+			return currentHealth - currentHealth;
 		return currentHealth -= change;
 	}
 	
@@ -45,5 +48,10 @@ public class Entity
 	public int getTotalHealth()
 	{
 		return totalHealth;
+	}
+	
+	public String getName()
+	{
+		return name;
 	}
 }
