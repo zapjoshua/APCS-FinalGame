@@ -89,6 +89,16 @@ public class Game extends Actor
    public static void checkCollision(Location loc) { //checks for specific entities in the next space
 	   Actor thing = grid.get(loc);
 	   
+	    if(thing instanceof Dog)
+	   {
+			try {
+				new BattleWindow2(playerEntity, new Entity(6, 2, 0, "Rat",  "./ratBattle.gif"));
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	   }
+	   
 	   if(thing instanceof AmongUs) {
 		   //idk cayden puts however the battle system here
 		   System.out.print("when the imposter is sus");
