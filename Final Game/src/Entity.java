@@ -8,6 +8,7 @@ public class Entity
 	private int currentHealth;
 	private int attack;
 	private int defense;
+	private String name;
 	//private Image image;
 	
 	//constructor for basic stats
