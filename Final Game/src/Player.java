@@ -13,8 +13,8 @@ public class Player extends Actor
 		setColor(null);
 	}
 	
-	public void Act()
+	public void act()
 	{
-		
+		//does nothing
 	}
 }
