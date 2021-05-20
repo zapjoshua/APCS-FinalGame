@@ -4,8 +4,6 @@ import java.util.Scanner;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import java.awt.Color;
-import java.io.IOException;
-
 import info.gridworld.actor.*;
 import info.gridworld.grid.*;
 
@@ -13,7 +11,7 @@ public class Game extends Actor
 {
    public static BoundedGrid<Actor> grid = new BoundedGrid<Actor>(20, 20);
    public static ActorWorld world = new ActorWorld(grid);
-   public static Entity playerEntity = new Entity(10, 2, 1, "Player", "./PlayerBattle.gif");
+   
    
    public static void main(String[] args) 
    {
@@ -40,6 +38,14 @@ public class Game extends Actor
 		{
 			num = x % 4;
 			world.add(new Rock(colors[num]));
+		}
+		for(int x = 0; x < 4; x++)
+		{
+			num = x % 4;
+			Boulder b = new Boulder(colors[num]);
+			int row = (int)(Math.random() * 20);
+			int col = (int)(Math.random() * 20);
+			b.placeBoulder(grid, row, col);
 		}
        world.show();
        
@@ -91,19 +97,9 @@ public class Game extends Actor
    public static void checkCollision(Location loc) { //checks for specific entities in the next space
 	   Actor thing = grid.get(loc);
 	   
-	    if(thing instanceof Dog)
-	   {
-			try {
-				new BattleWindow2(playerEntity, new Entity(6, 2, 0, "Rat",  "./ratBattle.gif"));
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-	   }
-	   
 	   if(thing instanceof AmongUs) {
 		   //idk cayden puts however the battle system here
-		   System.out.print("when the imposter is sus");
+		   System.out.print("when the imposter is sus\n");
 	   }
    }
 }
