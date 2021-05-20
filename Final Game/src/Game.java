@@ -32,7 +32,9 @@ public class Game extends Actor
 
        //Adding Player and other entities to the world
 	   Player r = new Player();
+	   AmongUs a = new AmongUs();
 	   world.add(new Location(10,10),r);
+	   world.add(new Location(15,15), a);
 		for(int x = 0; x < 15; x++)
 		{
 			num = x % 4;
