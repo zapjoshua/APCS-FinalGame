@@ -3,18 +3,20 @@ import java.util.Scanner;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-
+import java.awt.Color;
 import info.gridworld.actor.*;
 import info.gridworld.grid.*;
 
 public class Game extends Actor
 {
-   public static BoundedGrid<Actor> grid = new BoundedGrid<Actor>(16, 16);
+   public static BoundedGrid<Actor> grid = new BoundedGrid<Actor>(20, 20);
    public static ActorWorld world = new ActorWorld(grid);
    
    
    public static void main(String[] args) 
    {
+	   int num = 0;
+	   Color[] colors = {Color.DARK_GRAY, Color.GRAY, Color.LIGHT_GRAY, Color.WHITE};
 	   //Hiding unimportant things and changing name from GridWorld to Rat Game
        System.setProperty("info.gridworld.gui.selection", "hide");
        System.setProperty("info.gridworld.gui.tooltips", "hide");
@@ -24,9 +26,18 @@ public class Game extends Actor
        JFrame text = new JFrame();
 
        //Adding Rat to the world
-	   Player r = new Player();
+       Player r = new Player();
+	   AmongUs a = new AmongUs();
+	   Dog d = new Dog();
 	   world.add(new Location(10,10),r);
-	   world.add(new Location (5,5),new Rock());
+	   world.add(new Location(15,15), a);
+	   world.add(new Location(5,5), d);
+	   world.add(new Location(10,10),r);
+		for(int x = 0; x < 15; x++)
+		{
+			num = x % 4;
+			world.add(new Rock(colors[num]));
+		}
        world.show();
        
        //Keyboard inputs
