@@ -1,0 +1,16 @@
+ //Adding Player to the world
+	   Player r = new Player();
+	   world.add(new Location(10,10),r);
+	   world.add(new Location (5,5),new Rock());
+       world.show();
+       
+       //Adding rat Boss to the world
+       Dog rat = new Dog();
+       world.add(new Location(8,15), rat);
+       world.show();
+       
+       //adding amongus Boss to the world
+       AmongUs aus = new AmongUs();
+       world.add(new Location(1,11), aus);
+       world.show();
+
