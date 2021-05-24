@@ -9,9 +9,24 @@ import java.awt.Color;
 
 public class AmongUs extends Actor
 {
+
+	public static void play(String filename)
+		{
+		    try
+		    {
+			Clip clip = AudioSystem.getClip();
+			clip.open(AudioSystem.getAudioInputStream(new File(filename)));
+			clip.start();
+		    }
+		    catch (Exception exc)
+		    {
+			exc.printStackTrace(System.out);
+		    }
+		}
 	public AmongUs()
 	{
 		setColor(null);
+		play("AmongUsSpawn.wav");
 	}
 	public void act()
 	{
