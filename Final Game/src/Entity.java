@@ -30,6 +30,13 @@ public class Entity
 		currentHealth -= change;
 	}
 	
+	public void healHP(int change) {
+		currentHealth += change;
+		if(currentHealth > totalHealth) {
+			currentHealth = totalHealth;
+		}
+	}
+	
 	public int getAttack()
 	{
 		return attack;
