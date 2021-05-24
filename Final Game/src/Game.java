@@ -11,6 +11,8 @@ public class Game extends Actor
 {
    public static BoundedGrid<Actor> grid = new BoundedGrid<Actor>(20, 20);
    public static ActorWorld world = new ActorWorld(grid);
+   private static Entity playerEntity = new Entity(10, 2, 1, "Player", "./PlayerBattle.gif");
+   public static inBattle = false;
    
    
    public static void main(String[] args) 
@@ -87,6 +89,9 @@ public class Game extends Actor
        world.show();
     }
    public static boolean canMove(Location loc) { //function for checking if the next space is valid
+	   if(inBattle) {
+		   return false;
+	   }
 	   if(! grid.isValid(loc))
 		   return false;
 	   checkCollision(loc);
@@ -94,12 +99,28 @@ public class Game extends Actor
 	   
 	   return(!(thing instanceof Rock || thing instanceof Dog || thing instanceof AmongUs || thing instanceof Rat)); //make sure to add (thing instanceof <what ever new class youre adding>)
    }
+   
    public static void checkCollision(Location loc) { //checks for specific entities in the next space
 	   Actor thing = grid.get(loc);
+	   
+	   if(thing instanceof Rat)
+	   {
+			try {
+				inBattle = true;
+				new BattleWindow2(playerEntity, new Entity(6, 2, 0, "Rat",  "./ratBattle.gif"));
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	   }
 	   
 	   if(thing instanceof AmongUs) {
 		   //idk cayden puts however the battle system here
 		   System.out.print("when the imposter is sus\n");
 	   }
+   }
+   
+   public static void endBattle() {
+	   inBattle = false;
    }
 }
