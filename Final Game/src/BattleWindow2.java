@@ -10,6 +10,7 @@ public class BattleWindow2 extends JFrame implements ActionListener
 {
 	private static Entity player; //= new Entity(10, 2, 1, "Player", "./PlayerBattle.gif");
 	private static Entity enemy; //= new Entity(6, 2, 0, "Rat",  "./ratBattle.gif");
+	private static Game g;
 	
 	public BattleWindow2(Entity p, Entity e) throws IOException
 	{
@@ -76,25 +77,21 @@ public class BattleWindow2 extends JFrame implements ActionListener
 						playerHealth.setText(showHealth(player.getName(),player.getCurrentHealth(), player.getTotalHealth()));
 						if(player.getCurrentHealth() == 0)
 						{
-							JOptionPane.showMessageDialog(frame, "GAME OVER: You Lost!");
-							frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+							battleLose(frame);
 						}
 					}
 					else
 					{
-						JOptionPane.showMessageDialog(frame, "You Won!");
-						frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+						battleWin(frame);
 					}
 				}
 				else if (enemy.getCurrentHealth() <= 0)
 				{
-					JOptionPane.showMessageDialog(frame, "You Won!");
-					frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+					battleWin(frame);
 				}
 				else if (player.getCurrentHealth() <= 0)
 				{
-					JOptionPane.showMessageDialog(frame, "GAME OVER: You Lost!");
-					frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+					battleLose(frame);
 				}
 					
 				
@@ -110,19 +107,16 @@ public class BattleWindow2 extends JFrame implements ActionListener
 					playerHealth.setText(showHealth(player.getName(),player.getCurrentHealth(), player.getTotalHealth()));
 					if (player.getCurrentHealth() == 0) //check if health reached 0 to display loss message
 					{
-						JOptionPane.showMessageDialog(frame, "GAME OVER: You Lost!");
-						frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+						battleLose(frame);
 					}
 				}
 				else if (player.getCurrentHealth() == 0)
 				{
-					JOptionPane.showMessageDialog(frame, "GAME OVER: You Lost!");
-					frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+					battleLose(frame);
 				}
 				else
 				{
-					JOptionPane.showMessageDialog(frame, "You Won!");
-					frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+					battleWin(frame);
 				}
 			}
 			
@@ -130,6 +124,18 @@ public class BattleWindow2 extends JFrame implements ActionListener
 			
 	}
 	
+	public static void battleWin(JFrame frame) { //player wins
+		JOptionPane.showMessageDialog(frame, "You Won!");
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		frame.dispose();
+		g.endBattle(); //ignore the yellow underline it works
+	}
+	
+	public static void battleLose(JFrame frame) { //player loses
+		JOptionPane.showMessageDialog(frame, "GAME OVER: You Lost!");
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		System.exit(0);
+	}
 
 	public static String showHealth(String name, int cHealth, int totHealth)
 	{
