@@ -115,7 +115,7 @@ public class Game extends Actor
 		   return false;
 	   Actor thing = grid.get(loc); //gets whatever actor is at the location
 	   
-	   return(!(thing instanceof Rock || thing instanceof Dog || thing instanceof AmongUs || thing instanceof Rat)); //make sure to add (thing instanceof <what ever new class youre adding>)
+	   return(!(thing instanceof Rock || thing instanceof Dog || thing instanceof AmongUs || thing instanceof Rat || thing instanceof Tree)); //make sure to add (thing instanceof <what ever new class youre adding>)
    }
    
    public static void checkCollision(Location loc) { //checks for specific entities in the next space
