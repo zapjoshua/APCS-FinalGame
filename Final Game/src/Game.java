@@ -165,6 +165,9 @@ public class Game extends Actor
 		   //the game ends
 		   System.out.println("Gold star");
 	   }
+	   if(thing instanceof Tree) { //tree heal hp yes
+		   playerEntity.healHP(5);
+	   }
    }
    
    public static void endBattle() {
