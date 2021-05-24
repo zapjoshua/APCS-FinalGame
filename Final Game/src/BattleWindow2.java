@@ -127,6 +127,7 @@ public class BattleWindow2 extends JFrame implements ActionListener
 	}
 	
 	public static void battleWin(JFrame frame) { //player wins
+		play("fatality.wav");
 		JOptionPane.showMessageDialog(frame, "You Won!");
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.dispose();
