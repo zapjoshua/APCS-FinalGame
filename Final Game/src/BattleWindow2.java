@@ -1,4 +1,6 @@
 import javax.imageio.ImageIO;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import javax.swing.*;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
@@ -132,6 +134,7 @@ public class BattleWindow2 extends JFrame implements ActionListener
 	}
 	
 	public static void battleLose(JFrame frame) { //player loses
+		play("OOF.wav");
 		JOptionPane.showMessageDialog(frame, "GAME OVER: You Lost!");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		System.exit(0);
@@ -140,6 +143,20 @@ public class BattleWindow2 extends JFrame implements ActionListener
 	public static String showHealth(String name, int cHealth, int totHealth)
 	{
 		return 	name + ":   " + cHealth + " / " + totHealth;
+	}
+	
+	public static void play(String filename)
+	{
+	    try
+	    {
+		Clip clip = AudioSystem.getClip();
+		clip.open(AudioSystem.getAudioInputStream(new File(filename)));
+		clip.start();
+	    }
+	    catch (Exception exc)
+	    {
+		exc.printStackTrace(System.out);
+	    }
 	}
 
 
