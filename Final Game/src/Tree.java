@@ -25,6 +25,7 @@ public class Tree extends Actor{
 	public Tree(int length) {
 		steps=0;
 		sideLength=length;
+		setColor(null);
 	}
 	
 /*	public void play(String audioFilePath) {
