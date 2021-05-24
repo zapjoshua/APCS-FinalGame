@@ -23,6 +23,9 @@ public class Game extends Actor
    private static Entity playerEntity = new Entity(10, 2, 1, "Player", "./PlayerBattle.gif");
    private static boolean inBattle = false;
    private static LockDoor door = new LockDoor();
+   private static Vent v1 = new Vent();
+   private static Vent v2 = new Vent();
+   private static Player r = new Player();
    
    public static void play(String filename)
 	{
@@ -51,7 +54,6 @@ public class Game extends Actor
        JFrame text = new JFrame();
 
        //Adding Rat to the world
-       Player r = new Player();
 	   AmongUs a = new AmongUs();
 	   Dog d = new Dog();
 	   Rat rat = new Rat();
@@ -75,6 +77,8 @@ public class Game extends Actor
 			int col = (int)(Math.random() * 20);
 			b.placeBoulder(grid, row, col);
 		}
+		world.add(v1);
+		world.add(v2);
        world.show();
        
        //Keyboard inputs
@@ -124,7 +128,7 @@ public class Game extends Actor
 		   return false;
 	   }
 	   
-	   return(!(thing instanceof Rock || thing instanceof Dog || thing instanceof AmongUs || thing instanceof Rat || thing instanceof LockDoor)); //make sure to add (thing instanceof <what ever new class youre adding>)
+	   return(!(thing instanceof Rock || thing instanceof Dog || thing instanceof AmongUs || thing instanceof Rat || thing instanceof LockDoor || thing instanceof Vent)); //make sure to add (thing instanceof <what ever new class youre adding>)
    }
    
    public static void checkCollision(Location loc) { //checks for specific entities in the next space
@@ -167,6 +171,19 @@ public class Game extends Actor
 	   }
 	   if(thing instanceof Tree) { //tree heal hp yes
 		   playerEntity.healHP(5);
+	   }
+	   if(thing instanceof Vent)
+	   {
+		   if(thing.getLocation() == v1.getLocation())
+		   {
+			   if(grid.isValid(v2.teleportLoc(r.getLocation(), v1.getLocation())))
+				   r.moveTo(v2.teleportLoc(r.getLocation(), v1.getLocation()));
+		   }
+		   else
+		   {
+			   if(grid.isValid(v1.teleportLoc(r.getLocation(), v2.getLocation())))
+				   r.moveTo(v1.teleportLoc(r.getLocation(), v2.getLocation()));
+		   }
 	   }
    }
    
