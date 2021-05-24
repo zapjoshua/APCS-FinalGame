@@ -18,10 +18,11 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 
 public class Game extends Actor
 {
-   public static BoundedGrid<Actor> grid = new BoundedGrid<Actor>(20, 20);
-   public static ActorWorld world = new ActorWorld(grid);
+   private static BoundedGrid<Actor> grid = new BoundedGrid<Actor>(20, 20);
+   private static ActorWorld world = new ActorWorld(grid);
    private static Entity playerEntity = new Entity(10, 2, 1, "Player", "./PlayerBattle.gif");
-   public static boolean inBattle = false;
+   private static boolean inBattle = false;
+   private static LockDoor door = new LockDoor();
    
    public static void play(String filename)
 	{
@@ -60,6 +61,7 @@ public class Game extends Actor
 	   world.add(new Location(5,5), d);
 	   world.add(new Location(3,7), rat);
 	   world.add(new Location(2,5), alice);
+	   world.add(new Location(10, 16), door);
 		for(int x = 0; x < 15; x++)
 		{
 			num = x % 4;
@@ -113,9 +115,16 @@ public class Game extends Actor
 	   }
 	   if(! grid.isValid(loc))
 		   return false;
+	   
 	   Actor thing = grid.get(loc); //gets whatever actor is at the location
 	   
-	   return(!(thing instanceof Rock || thing instanceof Dog || thing instanceof AmongUs || thing instanceof Rat || thing instanceof Tree)); //make sure to add (thing instanceof <what ever new class youre adding>)
+	   if(door.open && thing instanceof LockDoor) {
+		   thing.removeSelfFromGrid();
+		   world.add(loc, new Door());
+		   return false;
+	   }
+	   
+	   return(!(thing instanceof Rock || thing instanceof Dog || thing instanceof AmongUs || thing instanceof Rat || thing instanceof LockDoor)); //make sure to add (thing instanceof <what ever new class youre adding>)
    }
    
    public static void checkCollision(Location loc) { //checks for specific entities in the next space
@@ -131,7 +140,7 @@ public class Game extends Actor
 				e.printStackTrace();
 			}
 			thing.removeSelfFromGrid();
-			//world.add(loc, new Key(Color.GRAY)); are we still doing keys?
+			world.add(loc, new Key(Color.GRAY)); //are we still doing keys?
 	   }
 	   
 	   if(thing instanceof AmongUs) {
@@ -143,6 +152,18 @@ public class Game extends Actor
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+		   thing.removeSelfFromGrid();
+		   world.add(loc, new Key(Color.RED)); //are we still doing keys?
+	   }
+	   if(thing instanceof Key) {
+		   door.numKeys += 1;
+	   }
+	   if(thing instanceof LockDoor) {
+		   door.UnLock();
+	   }
+	   if(thing instanceof Door) {
+		   //the game ends
+		   System.out.println("Gold star");
 	   }
    }
    
