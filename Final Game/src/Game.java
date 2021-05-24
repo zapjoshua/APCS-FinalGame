@@ -16,6 +16,19 @@ public class Game extends Actor
    private static Entity playerEntity = new Entity(10, 2, 1, "Player", "./PlayerBattle.gif");
    public static boolean inBattle = false;
    
+   public static void play(String filename)
+	{
+	    try
+	    {
+	        Clip clip = AudioSystem.getClip();
+	        clip.open(AudioSystem.getAudioInputStream(new File(filename)));
+	        clip.start();
+	    }
+	    catch (Exception exc)
+	    {
+	        exc.printStackTrace(System.out);
+	    }
+	}
    
    public static void main(String[] args) 
    {
