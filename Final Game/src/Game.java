@@ -107,12 +107,12 @@ public class Game extends Actor
        world.show();
     }
    public static boolean canMove(Location loc) { //function for checking if the next space is valid
+	   checkCollision(loc);
 	   if(inBattle) {
 		   return false;
 	   }
 	   if(! grid.isValid(loc))
 		   return false;
-	   checkCollision(loc);
 	   Actor thing = grid.get(loc); //gets whatever actor is at the location
 	   
 	   return(!(thing instanceof Rock || thing instanceof Dog || thing instanceof AmongUs || thing instanceof Rat)); //make sure to add (thing instanceof <what ever new class youre adding>)
@@ -130,11 +130,19 @@ public class Game extends Actor
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			thing.removeSelfFromGrid();
+			//world.add(loc, new Key(Color.GRAY)); are we still doing keys?
 	   }
 	   
 	   if(thing instanceof AmongUs) {
-		   //idk cayden puts however the battle system here
 		   System.out.print("when the imposter is sus\n");
+		   try {
+				inBattle = true;
+				new BattleWindow2(playerEntity, new Entity(12, 3, 1, "Amogus",  "./amongUsBattle.gif"));
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 	   }
    }
    
