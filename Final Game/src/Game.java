@@ -75,12 +75,6 @@ public class Game extends Actor
     		   if (key.equals("pressed A"))
     			   if(canMove(r.getLocation().getAdjacentLocation(Location.WEST)))
     			   r.moveTo(r.getLocation().getAdjacentLocation(Location.WEST));
-    		   //pick up
-    		   if (key.equals("pressed E"))
-    			   JOptionPane.showMessageDialog(text, "You grabbed an item");
-    		   //fight
-    		   if (key.equals("pressed F"))
-    			   JOptionPane.showMessageDialog(text, "FIGHT");
     		   world.show();
     		   return true;
     	   }
