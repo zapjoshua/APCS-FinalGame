@@ -9,9 +9,23 @@ import java.awt.Color;
 
 public class Dog extends Actor
 {
+	public static void play(String filename)
+	{
+	    try
+	    {
+	        Clip clip = AudioSystem.getClip();
+	        clip.open(AudioSystem.getAudioInputStream(new File(filename)));
+	        clip.start();
+	    }
+	    catch (Exception exc)
+	    {
+	        exc.printStackTrace(System.out);
+	    }
+	}
 	public Dog()
 	{
 		setColor(null);
+		play("DogPant.wav");
 	}
 	public void act()
 	{
