@@ -9,6 +9,12 @@ import java.io.IOException;
 import info.gridworld.actor.*;
 import info.gridworld.grid.*;
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+
 public class Game extends Actor
 {
    public static BoundedGrid<Actor> grid = new BoundedGrid<Actor>(20, 20);
