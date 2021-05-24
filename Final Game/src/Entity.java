@@ -21,13 +21,13 @@ public class Entity
 		fileName = f;
 	}
 	
-	public int setCurrentHealth(int change)
+	public void setCurrentHealth(int change)
 	{
 		if (change < 0)
-			return 0;
+			change = 0;
 		else if (change > currentHealth)
-			return currentHealth -= currentHealth;
-		return currentHealth -= change;
+			change = currentHealth;
+		currentHealth -= change;
 	}
 	
 	public int getAttack()
