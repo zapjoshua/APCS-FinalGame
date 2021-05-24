@@ -61,7 +61,7 @@ public class Game extends Actor
 	   world.add(new Location(5,5), d);
 	   world.add(new Location(3,7), rat);
 	   world.add(new Location(2,5), alice);
-	   world.add(new Location(10, 16), door);
+	   world.add(new Location(16, 10), door);
 		for(int x = 0; x < 15; x++)
 		{
 			num = x % 4;
