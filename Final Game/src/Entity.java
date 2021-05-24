@@ -26,10 +26,7 @@ public class Entity
 		if (change < 0)
 			return 0;
 		else if (change > currentHealth)
-		{
-			change = currentHealth - currentHealth;
-			return change;
-		}
+			return currentHealth -= currentHealth;
 		return currentHealth -= change;
 	}
 	
