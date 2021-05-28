@@ -20,7 +20,7 @@ public class Game extends Actor
 {
    private static BoundedGrid<Actor> grid = new BoundedGrid<Actor>(20, 20);
    private static ActorWorld world = new ActorWorld(grid);
-   private static Entity playerEntity = new Entity(10, 2, 1, "Player", "./PlayerBattle.gif");
+   private static PlayerEntity playerEntity = new PlayerEntity(10, 2, 1, "Player", "./PlayerBattle.gif");
    private static boolean inBattle = false;
    private static LockDoor door = new LockDoor();
    private static Vent v1 = new Vent();
@@ -54,14 +54,12 @@ public class Game extends Actor
        AmongUs a = new AmongUs();
 	   Dog d = new Dog();
 	   Rat rat = new Rat();
-	   Rat rat2 = new Rat();
 	   Rat rat3 = new Rat();
 	   Tree alice=new Tree(6);
 	   world.add(new Location(10,10),r);
 	   world.add(new Location(15,15), a);
 	   world.add(new Location(5,5), d);
 	   world.add(new Location(3,7), rat);
-	   world.add(new Location(17,8), rat2);
 	   world.add(new Location(11,16), rat3);
 	   world.add(new Location(2,5), alice);
 	   world.add(new Location(16, 10), door);
