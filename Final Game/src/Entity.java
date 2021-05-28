@@ -3,10 +3,10 @@ public class Entity
 {
 
 	//basic stats
-	private int totalHealth;
-	private int currentHealth;
-	private int attack;
-	private int defense;
+	protected int totalHealth;
+	protected int currentHealth;
+	protected int attack;
+	protected int defense;
 	private String name;
 	private String fileName;
 	
