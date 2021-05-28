@@ -10,11 +10,11 @@ import java.awt.*;
 
 public class BattleWindow2 extends JFrame implements ActionListener
 {
-	private static Entity player; //= new Entity(10, 2, 1, "Player", "./PlayerBattle.gif");
+	private static PlayerEntity player; //= new Entity(10, 2, 1, "Player", "./PlayerBattle.gif");
 	private static Entity enemy; //= new Entity(6, 2, 0, "Rat",  "./ratBattle.gif");
 	private static Game g;
 	
-	public BattleWindow2(Entity p, Entity e) throws IOException
+	public BattleWindow2(PlayerEntity p, Entity e) throws IOException
 	{
 		player = p;
 		enemy = e;
