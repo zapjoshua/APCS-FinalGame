@@ -115,7 +115,7 @@ public class Game extends Actor
        });
        
        //Shows message above game window
-       world.setMessage("Its Gaming Time\n" + "You have " + door.numKeys + " / 3 keys.");      
+       world.setMessage("Its Gaming Time\n" + "You have " + door.numKeys + " / 3 keys.\nHealth: " + playerEntity.getCurrentHealth() + " / " + playerEntity.getTotalHealth() + "     Exp: " + playerEntity.getCurrentExp() + " / " + playerEntity.getTotalExp());     
        world.show();
     }
    public static boolean canMove(Location loc) { //function for checking if the next space is valid
@@ -170,7 +170,7 @@ public class Game extends Actor
 	   }
 	   if(thing instanceof Key) {
 		   door.numKeys += 1;
-		   world.setMessage("Its Gaming Time\n" + "You have " + door.numKeys + " / 3 keys.");
+		   world.setMessage("Its Gaming Time\n" + "You have " + door.numKeys + " / 3 keys.\nHealth: " + playerEntity.getCurrentHealth() + " / " + playerEntity.getTotalHealth() + "     Exp: " + playerEntity.getCurrentExp() + " / " + playerEntity.getTotalExp());
 	   }
 	   if(thing instanceof LockDoor) {
 		   door.UnLock();
@@ -182,6 +182,7 @@ public class Game extends Actor
 	   }
 	   if(thing instanceof Tree) { //tree heal hp yes
 		   playerEntity.healHP(10);
+		   world.setMessage("Its Gaming Time\n" + "You have " + door.numKeys + " / 3 keys.\nHealth: " + playerEntity.getCurrentHealth() + " / " + playerEntity.getTotalHealth() + "     Exp: " + playerEntity.getCurrentExp() + " / " + playerEntity.getTotalExp());
 	   }
 	   if(thing instanceof Vent)
 	   {
@@ -200,5 +201,6 @@ public class Game extends Actor
    
    public static void endBattle() {
 	   inBattle = false;
+	   world.setMessage("Its Gaming Time\n" + "You have " + door.numKeys + " / 3 keys.\nHealth: " + playerEntity.getCurrentHealth() + " / " + playerEntity.getTotalHealth() + "     Exp: " + playerEntity.getCurrentExp() + " / " + playerEntity.getTotalExp());
    }
 }
