@@ -20,7 +20,7 @@ public class Game extends Actor
 {
    private static BoundedGrid<Actor> grid = new BoundedGrid<Actor>(20, 20);
    private static ActorWorld world = new ActorWorld(grid);
-   private static PlayerEntity playerEntity = new PlayerEntity(10, 2, 1, "Player", "./PlayerBattle.gif");
+   private static Entity playerEntity = new Entity(10, 2, 1, "Player", "./PlayerBattle.gif");
    private static boolean inBattle = false;
    private static LockDoor door = new LockDoor();
    private static Vent v1 = new Vent();
@@ -51,7 +51,7 @@ public class Game extends Actor
        System.setProperty("info.gridworld.gui.frametitle", "The Game");
   
        //Adding Rat to the world
-	   AmongUs a = new AmongUs();
+       AmongUs a = new AmongUs();
 	   Dog d = new Dog();
 	   Rat rat = new Rat();
 	   Rat rat2 = new Rat();
@@ -65,14 +65,19 @@ public class Game extends Actor
 	   world.add(new Location(11,16), rat3);
 	   world.add(new Location(2,5), alice);
 	   world.add(new Location(16, 10), door);
-		for(int x = 0; x < 15; x++)
+		for(int x = 0; x < 20; x++)
 		{
-			num = x % 4;
-			world.add(new Rock(colors[num]));
+			num = (int)(Math.random() * 3) + 1;
+			world.add(new Location(0, x),new Rock(colors[num]));
 		}
-		for(int x = 0; x < 4; x++)
+		for(int x = 0; x < 20; x++)
 		{
-			num = x % 4;
+			num = (int)(Math.random() * 3) + 1;
+			world.add(new Location(19, x),new Rock(colors[num]));
+		}
+		for(int x = 0; x < 6; x++)
+		{
+			num = (int)(Math.random() * 3) + 1;
 			Boulder b = new Boulder(colors[num]);
 			int row = (int)(Math.random() * 20);
 			int col = (int)(Math.random() * 20);
@@ -114,12 +119,14 @@ public class Game extends Actor
        world.show();
     }
    public static boolean canMove(Location loc) { //function for checking if the next space is valid
+	   if(!grid.isValid(loc))
+		   return false;
+	   
 	   checkCollision(loc);
+	   
 	   if(inBattle) {
 		   return false;
 	   }
-	   if(! grid.isValid(loc))
-		   return false;
 	   
 	   Actor thing = grid.get(loc); //gets whatever actor is at the location
 	   
@@ -129,7 +136,7 @@ public class Game extends Actor
 		   return false;
 	   }
 	   
-	   return(!(thing instanceof Rock || thing instanceof Dog || thing instanceof AmongUs || thing instanceof Rat || thing instanceof LockDoor || thing instanceof Vent || thing instanceof Door)); //make sure to add (thing instanceof <what ever new class youre adding>)
+	   return(!(thing instanceof Rock || thing instanceof Dog || thing instanceof AmongUs || thing instanceof Rat || thing instanceof LockDoor || thing instanceof Vent)); //make sure to add (thing instanceof <what ever new class youre adding>)
    }
    
    public static void checkCollision(Location loc) { //checks for specific entities in the next space
@@ -145,7 +152,7 @@ public class Game extends Actor
 				e.printStackTrace();
 			}
 			thing.removeSelfFromGrid();
-			world.add(loc, new Key(Color.green)); //are we still doing keys?
+			world.add(loc, new Key(Color.gray)); //are we still doing keys?
 	   }
 	   
 	   if(thing instanceof AmongUs) {
@@ -170,10 +177,11 @@ public class Game extends Actor
 	   }
 	   if(thing instanceof Door && door.open) {
 		   //the game ends
-		   System.out.println("end");
+		   JOptionPane.showMessageDialog(new JFrame(), "The game is over. Win $1.");
+		   System.exit(0);
 	   }
 	   if(thing instanceof Tree) { //tree heal hp yes
-		   playerEntity.healHP(5);
+		   playerEntity.healHP(10);
 	   }
 	   if(thing instanceof Vent)
 	   {
