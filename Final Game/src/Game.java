@@ -54,11 +54,15 @@ public class Game extends Actor
 	   AmongUs a = new AmongUs();
 	   Dog d = new Dog();
 	   Rat rat = new Rat();
+	   Rat rat2 = new Rat();
+	   Rat rat3 = new Rat();
 	   Tree alice=new Tree(6);
 	   world.add(new Location(10,10),r);
 	   world.add(new Location(15,15), a);
 	   world.add(new Location(5,5), d);
 	   world.add(new Location(3,7), rat);
+	   world.add(new Location(17,8), rat2);
+	   world.add(new Location(11,16), rat3);
 	   world.add(new Location(2,5), alice);
 	   world.add(new Location(16, 10), door);
 		for(int x = 0; x < 15; x++)
@@ -125,7 +129,7 @@ public class Game extends Actor
 		   return false;
 	   }
 	   
-	   return(!(thing instanceof Rock || thing instanceof Dog || thing instanceof AmongUs || thing instanceof Rat || thing instanceof LockDoor || thing instanceof Vent)); //make sure to add (thing instanceof <what ever new class youre adding>)
+	   return(!(thing instanceof Rock || thing instanceof Dog || thing instanceof AmongUs || thing instanceof Rat || thing instanceof LockDoor || thing instanceof Vent || thing instanceof Door)); //make sure to add (thing instanceof <what ever new class youre adding>)
    }
    
    public static void checkCollision(Location loc) { //checks for specific entities in the next space
