@@ -45,19 +45,17 @@ public class Game extends Actor
    {
 	   int num = 0;
 	   Color[] colors = {Color.DARK_GRAY, Color.GRAY, Color.LIGHT_GRAY, Color.WHITE};
-	   //Hiding unimportant things and changing name from GridWorld to Rat Game
+	   //Hiding unimportant things and changing name from GridWorld to The Game
        System.setProperty("info.gridworld.gui.selection", "hide");
        System.setProperty("info.gridworld.gui.tooltips", "hide");
        System.setProperty("info.gridworld.gui.frametitle", "The Game");
-       
-       //Test Popup for fighting sequence
-       JFrame text = new JFrame();
-
+  
        //Adding Rat to the world
 	   AmongUs a = new AmongUs();
 	   Dog d = new Dog();
 	   Rat rat = new Rat();
 	   Tree alice=new Tree(6);
+	   world.add(new Location(10,10),r);
 	   world.add(new Location(15,15), a);
 	   world.add(new Location(5,5), d);
 	   world.add(new Location(3,7), rat);
@@ -78,7 +76,6 @@ public class Game extends Actor
 		}
 		world.add(v1);
 		world.add(v2);
-		world.add(new Location(10,10),r);
        world.show();
        
        //Keyboard inputs
@@ -109,7 +106,7 @@ public class Game extends Actor
        });
        
        //Shows message above game window
-       world.setMessage("Its Gaming Time");      
+       world.setMessage("Its Gaming Time\n" + "You have " + door.numKeys + " / 3 keys.");      
        world.show();
     }
    public static boolean canMove(Location loc) { //function for checking if the next space is valid
@@ -144,11 +141,12 @@ public class Game extends Actor
 				e.printStackTrace();
 			}
 			thing.removeSelfFromGrid();
-			world.add(loc, new Key(Color.GRAY)); //are we still doing keys?
+			world.add(loc, new Key(Color.green)); //are we still doing keys?
 	   }
 	   
 	   if(thing instanceof AmongUs) {
 		   System.out.print("when the imposter is sus\n");
+		   
 		   try {
 				inBattle = true;
 				new BattleWindow2(playerEntity, new Entity(12, 3, 1, "Amogus",  "./amongUsBattle.gif"));
@@ -157,17 +155,18 @@ public class Game extends Actor
 				e.printStackTrace();
 			}
 		   thing.removeSelfFromGrid();
-		   world.add(loc, new Key(Color.RED)); //are we still doing keys?
+		   world.add(loc, new Key(Color.red));
 	   }
 	   if(thing instanceof Key) {
 		   door.numKeys += 1;
+		   world.setMessage("Its Gaming Time\n" + "You have " + door.numKeys + " / 3 keys.");
 	   }
 	   if(thing instanceof LockDoor) {
 		   door.UnLock();
 	   }
-	   if(thing instanceof Door) {
+	   if(thing instanceof Door && door.open) {
 		   //the game ends
-		   System.out.println("Gold star");
+		   System.out.println("end");
 	   }
 	   if(thing instanceof Tree) { //tree heal hp yes
 		   playerEntity.healHP(5);
