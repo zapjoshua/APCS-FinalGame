@@ -20,7 +20,7 @@ public class Game extends Actor
 {
    private static BoundedGrid<Actor> grid = new BoundedGrid<Actor>(20, 20);
    private static ActorWorld world = new ActorWorld(grid);
-   private static Entity playerEntity = new Entity(10, 2, 1, "Player", "./PlayerBattle.gif");
+   private static PlayerEntity playerEntity = new PlayerEntity(10, 2, 1, "Player", "./PlayerBattle.gif");
    private static boolean inBattle = false;
    private static LockDoor door = new LockDoor();
    private static Vent v1 = new Vent();
