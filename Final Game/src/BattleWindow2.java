@@ -129,6 +129,9 @@ public class BattleWindow2 extends JFrame implements ActionListener
 	public static void battleWin(JFrame frame) { //player wins
 		play("fatality.wav");
 		JOptionPane.showMessageDialog(frame, "You Won!");
+		player.setExp(5);
+		if (player.checkLevelUp() == true)
+			JOptionPane.showMessageDialog(frame, "Level Up!\n+1 Attack\n+1 Defense\n+2 HP\nHealth Restored");
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.dispose();
 		g.endBattle(); //ignore the yellow underline it works
