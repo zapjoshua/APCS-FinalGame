@@ -58,7 +58,6 @@ public class Game extends Actor
 	   Dog d = new Dog();
 	   Rat rat = new Rat();
 	   Tree alice=new Tree(6);
-	   world.add(new Location(10,10),r);
 	   world.add(new Location(15,15), a);
 	   world.add(new Location(5,5), d);
 	   world.add(new Location(3,7), rat);
@@ -79,6 +78,7 @@ public class Game extends Actor
 		}
 		world.add(v1);
 		world.add(v2);
+		world.add(new Location(10,10),r);
        world.show();
        
        //Keyboard inputs
